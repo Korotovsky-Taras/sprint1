@@ -3,7 +3,7 @@ type Product = {
     title: string
 }
 
-const products: Product[] = [{id: 1, title: 'product 1'}, {id: 2, title: 'product 2'}]
+const products: Product[] = [{id: 1, title: 'product 1'}, {id: 2, title: 'product 2'}, {id: 3, title: 'product 3'}]
 
 export const productRepository = {
     getProducts(): Product[] {
