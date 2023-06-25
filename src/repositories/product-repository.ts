@@ -1,15 +1,21 @@
-type Product = {
-    id: number,
-    title: string
+import {Product} from "./product-repository-types";
+
+const productsDbInstance = [{id: 1, title: 'product 1'}, {id: 2, title: 'product 2'}, {id: 3, title: 'product 3'}];
+
+const createProductsModel = (): Product[] => {
+    if (process.env.NODE_ENV !== 'test') {
+        return [...productsDbInstance]
+    }
+    return [...productsDbInstance]
 }
 
-const products: Product[] = [{id: 1, title: 'product 1'}, {id: 2, title: 'product 2'}, {id: 3, title: 'product 3'}]
+const products: Product[] = createProductsModel();
 
 export const productRepository = {
     getProducts(): Product[] {
         return products;
     },
-    createProduct(title: string) : Product | null {
+    createProduct(title: string): Product | null {
         if (!title.trim()) {
             return null;
         }
@@ -34,5 +40,9 @@ export const productRepository = {
             }
         }
         return false;
+    },
+
+    clear(): void {
+        products.splice(0, products.length)
     }
 }

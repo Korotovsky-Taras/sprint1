@@ -3,10 +3,8 @@ import {productRepository} from "../repositories/product-repository";
 
 export const productsRouter = Router();
 
-
 /**
- * Получение продукта
- * @{req.query.title}? - поиск по продукта по параметру title
+ * Receive all products, or product by ${req.query.title}
  */
 productsRouter.get("/", (req: Request, res: Response) => {
     if (req.query.title) {
@@ -23,8 +21,7 @@ productsRouter.get("/", (req: Request, res: Response) => {
 })
 
 /**
- * Создание продукта
- * @{req.body.title} - принимает параметр body.title
+ * Create product with ${req.body.title}
  */
 productsRouter.post("/", (req: Request, res: Response) => {
     const productTitle = req.body.title?.trim();
@@ -36,8 +33,7 @@ productsRouter.post("/", (req: Request, res: Response) => {
 })
 
 /**
- * Обновление продукта
- * @{:id} - id продукта
+ * Update product by ${param.id}
  */
 productsRouter.put("/:id", (req: Request, res: Response) => {
     const product = productRepository.findProductById(Number(req.params.id))
@@ -49,8 +45,7 @@ productsRouter.put("/:id", (req: Request, res: Response) => {
 })
 
 /**
- * Удаление продукта
- * @{:id} - id продукта
+ * Delete product by ${param.id}
  */
 productsRouter.delete("/:id", (req: Request, res: Response) => {
     const isDeleteSuccess = productRepository.deleteProductById(Number(req.params.id));
