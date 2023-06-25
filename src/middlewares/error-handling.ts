@@ -1,7 +1,7 @@
 import {ApiError} from "../utils/ApiError";
-import {Request, Response} from "express";
+import {NextFunction, Request, Response} from "express";
 
-const ErrorHandling = (err: Error, req: Request, res: Response) =>  {
+const ErrorHandling = (err: Error, req: Request, res: Response, next: NextFunction) =>  {
     if (err instanceof ApiError) {
         let response = res.status(err.status);
         if (err.errors) {
