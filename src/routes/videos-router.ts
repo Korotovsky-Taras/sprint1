@@ -18,7 +18,7 @@ videosRouter.get("/", (req: Request, res: Response) => {
 videosRouter.get("/:id", (req: Request, res: Response) => {
     const video = videosRepository.getVideoById(Number(req.params.id));
     if (!video) {
-        throw new ApiError(400, null)
+        throw new ApiError(404, null)
     }
     return res.status(200).send(video)
 })
