@@ -44,9 +44,8 @@ function videoRepositoryValidator(name: string, field: any) {
             return this;
         },
         required() {
-            if (field === null
-                || field === undefined
-                || typeof field === "string" && field === "") {
+            if (typeof field === 'undefined'
+                || typeof field === "string" && field.trim() === "") {
                 addError(`field ${name} is required`)
             }
             return this;
